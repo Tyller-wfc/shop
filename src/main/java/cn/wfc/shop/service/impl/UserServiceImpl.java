@@ -1,8 +1,8 @@
-package com.example.demo.service.impl;
+package cn.wfc.shop.service.impl;
 
-import com.example.demo.entity.User;
-import com.example.demo.mapper.UserMapper;
-import com.example.demo.service.UserService;
+import cn.wfc.shop.entity.User;
+import cn.wfc.shop.service.UserService;
+import cn.wfc.shop.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

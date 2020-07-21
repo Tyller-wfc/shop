@@ -1,6 +1,6 @@
-package com.example.demo.mapper;
+package cn.wfc.shop.mapper;
 
-import com.example.demo.entity.User;
+import cn.wfc.shop.entity.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

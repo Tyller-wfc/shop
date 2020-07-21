@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package cn.wfc.shop.service;
 
-import com.example.demo.entity.User;
+import cn.wfc.shop.entity.User;
 
 public interface UserService {
     User findUserByName(String name);

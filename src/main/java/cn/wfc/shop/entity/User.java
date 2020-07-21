@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package cn.wfc.shop.entity;
 
 public class User {
     private String name;

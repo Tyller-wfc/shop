@@ -1,4 +1,4 @@
-package com.example.demo;
+package cn.wfc.shop;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
