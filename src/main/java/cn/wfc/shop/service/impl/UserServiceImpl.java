@@ -1,8 +1,8 @@
 package cn.wfc.shop.service.impl;
 
-import cn.wfc.shop.entity.User;
+import cn.wfc.shop.entity.MyUser;
 import cn.wfc.shop.service.UserService;
-import cn.wfc.shop.mapper.UserMapper;
+import cn.wfc.shop.mapper.MyUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private MyUserMapper myUserMapper;
 
     @Override
-    public User findUserByName(String name) {
-        return userMapper.findUserByName(name);
+    public MyUser findUserByName(String name) {
+        return myUserMapper.findUserByName(name);
     }
 }

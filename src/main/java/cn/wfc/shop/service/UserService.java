@@ -1,7 +1,7 @@
 package cn.wfc.shop.service;
 
-import cn.wfc.shop.entity.User;
+import cn.wfc.shop.entity.MyUser;
 
 public interface UserService {
-    User findUserByName(String name);
+    MyUser findUserByName(String name);
 }

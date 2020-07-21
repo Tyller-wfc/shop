@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace= "UserMapper" >
-    <resultMap id ="UserInfoMap" type="User">
-        <result column="username" property="name"/>
+<mapper namespace= "cn.wfc.shop.mapper.MyUserMapper" >
+    <resultMap id ="UserInfoMap" type="cn.wfc.shop.entity.MyUser">
+        <result column="username" property="username"/>
         <result column="password" property="password"/>
     </resultMap>
 
@@ -13,6 +13,6 @@
           password
         from
           tb_user
-         where username = #{name}
+         where username = #{username}
     </select>
 </mapper>
