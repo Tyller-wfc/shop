@@ -20,11 +20,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/toLogin","/plugins/**/*","/dist/**/*").permitAll()
+                .antMatchers("/toLogin", "/plugins/**/*", "/dist/**/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/toLogin")
+                .passwordParameter("password")
+                .usernameParameter("email")
                 .successForwardUrl("/index")
                 .permitAll()
                 .and()

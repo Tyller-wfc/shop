@@ -7,12 +7,17 @@
         <result column="password" property="password"/>
     </resultMap>
 
-    <select id = "findUserByName" resultMap="UserInfoMap">
+    <select id = "findUserByEmail" resultMap="UserInfoMap">
         select
+          id,
           username,
-          password
+          password,
+          phone,
+          email,
+          created,
+          updated
         from
           tb_user
-         where username = #{username}
+         where email = #{email}
     </select>
 </mapper>

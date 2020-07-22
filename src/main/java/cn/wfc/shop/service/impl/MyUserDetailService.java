@@ -24,7 +24,7 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MyUser myUser = myUserMapper.findUserByName(username);
+        MyUser myUser = myUserMapper.findUserByEmail(username);
         List<GrantedAuthority> roles = new ArrayList<>();
         GrantedAuthority authority = new SimpleGrantedAuthority("guest");
         roles.add(authority);

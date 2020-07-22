@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MyUserMapper {
-    MyUser findUserByName(String username);
+    MyUser findUserByEmail(String email);
 }
