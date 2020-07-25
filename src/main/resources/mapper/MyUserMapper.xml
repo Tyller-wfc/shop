@@ -5,6 +5,10 @@
     <resultMap id ="UserInfoMap" type="cn.wfc.shop.entity.MyUser">
         <result column="username" property="username"/>
         <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="created" property="created"/>
+        <result column="updated" property="updated"/>
     </resultMap>
 
     <select id = "findUserByEmail" resultMap="UserInfoMap">
@@ -19,5 +23,18 @@
         from
           tb_user
          where email = #{email}
+    </select>
+
+    <select id = "findAll" resultMap="UserInfoMap">
+        select
+          id,
+          username,
+          password,
+          phone,
+          email,
+          created,
+          updated
+        from
+          tb_user
     </select>
 </mapper>

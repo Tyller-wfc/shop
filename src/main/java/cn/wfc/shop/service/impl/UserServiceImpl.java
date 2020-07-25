@@ -6,6 +6,8 @@ import cn.wfc.shop.mapper.MyUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -15,5 +17,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public MyUser findUserByName(String name) {
         return myUserMapper.findUserByEmail(name);
+    }
+
+    @Override
+    public List<MyUser> findAll() {
+        return myUserMapper.findAll();
     }
 }
