@@ -23,13 +23,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/toLogin", "/plugins/**/*", "/dist/**/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .rememberMe()
+                .and()
                 .formLogin()
                 .loginPage("/toLogin")
+                .loginProcessingUrl("/login")
                 .passwordParameter("password")
                 .usernameParameter("email")
-                .successForwardUrl("/index")
-                .permitAll()
+                .defaultSuccessUrl("/index",true)
+                .and()
+                .logout()
                 .and()
                 .csrf().disable();
+
     }
 }
