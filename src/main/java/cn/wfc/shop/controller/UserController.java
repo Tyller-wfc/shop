@@ -27,4 +27,9 @@ public class UserController {
         modelAndView.addObject("users", users);
         return modelAndView;
     }
+    @RequestMapping("/toAdd")
+    public ModelAndView add(ModelAndView modelAndView) {
+        modelAndView.setViewName("user_add");
+        return modelAndView;
+    }
 }
