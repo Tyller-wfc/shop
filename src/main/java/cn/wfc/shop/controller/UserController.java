@@ -6,7 +6,10 @@ import cn.wfc.shop.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -27,9 +30,16 @@ public class UserController {
         modelAndView.addObject("users", users);
         return modelAndView;
     }
+
     @RequestMapping("/toAdd")
     public ModelAndView add(ModelAndView modelAndView) {
         modelAndView.setViewName("user_add");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @ResponseBody
+    public MyUser add(MyUser myUser) {
+        return userService.add(myUser);
     }
 }
