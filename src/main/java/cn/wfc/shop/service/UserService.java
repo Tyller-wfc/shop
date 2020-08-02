@@ -8,7 +8,13 @@ import java.util.List;
 public interface UserService {
     MyUser findUserByName(String name);
 
+    MyUser findById(String id);
+
     List<MyUser> findAll();
 
     BaseResult add(MyUser myUser);
+
+    BaseResult update(MyUser myUser);
+
+    BaseResult deleteById(String id);
 }

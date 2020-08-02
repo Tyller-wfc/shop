@@ -7,10 +7,8 @@ import cn.wfc.shop.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,7 +32,7 @@ public class UserController {
     }
 
     @RequestMapping("/toAdd")
-    public ModelAndView add(ModelAndView modelAndView) {
+    public ModelAndView toAdd(ModelAndView modelAndView) {
         modelAndView.setViewName("user_add");
         return modelAndView;
     }
@@ -48,5 +46,31 @@ public class UserController {
         } else {
             return "redirect:/user/list";
         }
+    }
+
+    @RequestMapping("/toUpdate")
+    public ModelAndView toUpdate(String id, ModelAndView modelAndView) {
+        MyUser myUser = userService.findById(id);
+        modelAndView.addObject("user", myUser);
+        modelAndView.setViewName("user_update");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(MyUser myUser, RedirectAttributes redirectAttributes) {
+        BaseResult baseResult = userService.update(myUser);
+        redirectAttributes.addFlashAttribute("baseResult", baseResult);
+        if (!baseResult.isSuccess()) {
+            return "redirect:/user/toUpdate?id=" + myUser.getId();
+        } else {
+            return "redirect:/user/list";
+        }
+    }
+
+    @RequestMapping(value = "/delete")
+    public String delete(String id, RedirectAttributes redirectAttributes) {
+        BaseResult baseResult = userService.deleteById(id);
+        redirectAttributes.addFlashAttribute("baseResult", baseResult);
+        return "redirect:/user/list";
     }
 }

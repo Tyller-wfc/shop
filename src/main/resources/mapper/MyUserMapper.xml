@@ -22,7 +22,18 @@
         tb_user
         where email = #{email}
     </select>
+    <select id="findById" resultMap="UserInfoMap">
+        select
+        <include refid="BaseCol"/>
+        from
+        tb_user
+        where id = #{id}
+    </select>
 
+    <delete id="deleteById" parameterType="string">
+        delete from tb_user
+        where id=#{id}
+    </delete>
     <select id="findByExample" resultMap="UserInfoMap" parameterType="cn.wfc.shop.entity.MyUser">
         select
         <include refid="BaseCol"/>
@@ -55,4 +66,9 @@
         insert into tb_user(username,password,phone,email,created ,updated)
         values(#{myUser.username},#{myUser.password},#{myUser.phone},#{myUser.email},#{myUser.created},#{myUser.updated})
     </insert>
+    <update id="updateById" parameterType="cn.wfc.shop.entity.MyUser">
+        update tb_user set username=#{myUser.username},password=#{myUser.password},
+        phone=#{myUser.phone},email=#{myUser.email},updated=#{myUser.updated}
+        where id=#{myUser.id}
+    </update>
 </mapper>

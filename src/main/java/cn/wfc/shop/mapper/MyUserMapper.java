@@ -10,9 +10,15 @@ import java.util.List;
 public interface MyUserMapper {
     MyUser findUserByEmail(String email);
 
+    MyUser findById(String id);
+
     List<MyUser> findAll();
 
     int insert(@Param("myUser") MyUser myUser);
 
+    int updateById(@Param("myUser") MyUser myUser);
+
     List<MyUser> findByExample(@Param("example") MyUser example);
+
+    int deleteById(String id);
 }
