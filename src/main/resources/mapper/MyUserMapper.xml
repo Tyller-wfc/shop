@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace= "cn.wfc.shop.mapper.MyUserMapper" >
-    <resultMap id ="UserInfoMap" type="cn.wfc.shop.entity.MyUser">
+<mapper namespace="cn.wfc.shop.mapper.MyUserMapper">
+    <resultMap id="UserInfoMap" type="cn.wfc.shop.entity.MyUser">
+        <id column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
         <result column="phone" property="phone"/>
@@ -10,22 +11,35 @@
         <result column="created" property="created"/>
         <result column="updated" property="updated"/>
     </resultMap>
+    <sql id="BaseCol">
+        id,username,password,phone,email,created,updated
+    </sql>
 
-    <select id = "findUserByEmail" resultMap="UserInfoMap">
+    <select id="findUserByEmail" resultMap="UserInfoMap">
         select
-          id,
-          username,
-          password,
-          phone,
-          email,
-          created,
-          updated
+        <include refid="BaseCol"/>
         from
-          tb_user
-         where email = #{email}
+        tb_user
+        where email = #{email}
     </select>
 
-    <select id = "findAll" resultMap="UserInfoMap">
+    <select id="findByExample" resultMap="UserInfoMap" parameterType="cn.wfc.shop.entity.MyUser">
+        select
+        <include refid="BaseCol"/>
+        from tb_user
+        <where>
+            <if test="example.username!=null and example.username!=''">
+                and username = #{example.username}
+            </if>
+            <if test="example.phone!=null and example.phone!=''">
+                and phone = #{example.phone}
+            </if>
+            <if test="example.email!=null and example.email!=''">
+                and email = #{example.email}
+            </if>
+        </where>
+    </select>
+    <select id="findAll" resultMap="UserInfoMap">
         select
           id,
           username,

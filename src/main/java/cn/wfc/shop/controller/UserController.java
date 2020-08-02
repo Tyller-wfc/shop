@@ -1,16 +1,18 @@
 package cn.wfc.shop.controller;
 
+import cn.wfc.shop.entity.BaseResult;
 import cn.wfc.shop.entity.MyUser;
 import cn.wfc.shop.service.UserService;
 import cn.wfc.shop.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -37,9 +39,14 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
-    @ResponseBody
-    public MyUser add(MyUser myUser) {
-        return userService.add(myUser);
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String add(MyUser myUser, RedirectAttributes redirectAttributes) {
+        BaseResult baseResult = userService.add(myUser);
+        redirectAttributes.addFlashAttribute("baseResult", baseResult);
+        if (!baseResult.isSuccess()) {
+            return "redirect:/user/toAdd";
+        } else {
+            return "redirect:/user/list";
+        }
     }
 }

@@ -13,4 +13,6 @@ public interface MyUserMapper {
     List<MyUser> findAll();
 
     int insert(@Param("myUser") MyUser myUser);
+
+    List<MyUser> findByExample(@Param("example") MyUser example);
 }

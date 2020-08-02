@@ -1,5 +1,6 @@
 package cn.wfc.shop.service;
 
+import cn.wfc.shop.entity.BaseResult;
 import cn.wfc.shop.entity.MyUser;
 
 import java.util.List;
@@ -9,5 +10,5 @@ public interface UserService {
 
     List<MyUser> findAll();
 
-    MyUser add(MyUser myUser);
+    BaseResult add(MyUser myUser);
 }
