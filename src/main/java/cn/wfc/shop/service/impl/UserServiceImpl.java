@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService {
         myUser.setUpdated(new Date());
         BaseResult baseResult = checkUser(myUser);
         if (baseResult.isSuccess()) {
+            //验证密码不能为空
+            if (StringUtils.isEmpty(myUser.getPassword())) {
+                return BaseResult.fail("密码为空");
+            }
             myUserMapper.insert(myUser);
             baseResult = BaseResult.success(myUser);
             baseResult.setMsg("用户添加成功");
