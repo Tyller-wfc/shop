@@ -41,6 +41,7 @@ public class UserController {
     public String add(MyUser myUser, RedirectAttributes redirectAttributes) {
         BaseResult baseResult = userService.add(myUser);
         redirectAttributes.addFlashAttribute("baseResult", baseResult);
+        redirectAttributes.addFlashAttribute("myUser", myUser);
         if (!baseResult.isSuccess()) {
             return "redirect:/user/toAdd";
         } else {
