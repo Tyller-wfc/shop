@@ -62,6 +62,21 @@
         from
           tb_user
     </select>
+    <select id="findByKey" resultMap="UserInfoMap">
+        select
+          id,
+          username,
+          password,
+          phone,
+          email,
+          created,
+          updated
+        from
+          tb_user
+          where  username like concat('%',#{key} ,'%')
+          or phone like concat('%',#{key},'%')
+          or email like concat('%',#{key},'%')
+    </select>
     <insert id="insert" parameterType="cn.wfc.shop.entity.MyUser" useGeneratedKeys="true" keyProperty="id">
         insert into tb_user(username,password,phone,email,created ,updated)
         values(#{myUser.username},#{myUser.password},#{myUser.phone},#{myUser.email},#{myUser.created},#{myUser.updated})

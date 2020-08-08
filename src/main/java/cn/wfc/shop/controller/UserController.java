@@ -4,14 +4,18 @@ import cn.wfc.shop.entity.BaseResult;
 import cn.wfc.shop.entity.MyUser;
 import cn.wfc.shop.service.UserService;
 import cn.wfc.shop.util.SecurityUtil;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,6 +33,20 @@ public class UserController {
         List<MyUser> users = userService.findAll();
         modelAndView.addObject("users", users);
         return modelAndView;
+    }
+
+    @RequestMapping("/findByKey")
+    public String findByKey(String key, Model model) {
+        List<MyUser> users = new ArrayList<>();
+        if (StringUtils.isEmpty(key)) {
+            users = userService.findAll();
+        } else {
+            users = userService.findByKey(key);
+        }
+        User user = SecurityUtil.getLoginUser();
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("users", users);
+        return "user_list";
     }
 
     @RequestMapping("/toAdd")

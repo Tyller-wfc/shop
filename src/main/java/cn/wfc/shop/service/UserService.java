@@ -12,6 +12,8 @@ public interface UserService {
 
     List<MyUser> findAll();
 
+    List<MyUser> findByKey(String key);
+
     BaseResult add(MyUser myUser);
 
     BaseResult update(MyUser myUser);

@@ -14,6 +14,8 @@ public interface MyUserMapper {
 
     List<MyUser> findAll();
 
+    List<MyUser> findByKey(String key);
+
     int insert(@Param("myUser") MyUser myUser);
 
     int updateById(@Param("myUser") MyUser myUser);

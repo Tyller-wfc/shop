@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<MyUser> findByKey(String key) {
+        return myUserMapper.findByKey(key);
+    }
+
+    @Override
     public BaseResult add(MyUser myUser) {
         myUser.setCreated(new Date());
         myUser.setUpdated(new Date());
