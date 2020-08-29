@@ -49,8 +49,8 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="card-body table-responsive p-0" style="height: 440px;">
-                            <table class="table table-hover table-head-fixed text-nowrap">
+                        <div class="card-body">
+                            <table  id="user-table" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -125,6 +125,17 @@
 <!-- ./wrapper -->
 <div th:replace="../templates/fragment/js :: js"></div>
 <script>
+    $(function () {
+        $('#user-table').DataTable({
+            "paging": true,
+            "searching": false,
+            "ordering": false,
+            "info": false,
+            "autoWidth": false,
+            "responsive": true,
+            "lengthChange": false
+        });
+    });
     function toAdd() {
         window.location.href = '/user/toAdd';
     }
