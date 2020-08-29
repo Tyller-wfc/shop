@@ -50,14 +50,24 @@ public class UserController {
     }
 
     @RequestMapping("/toAdd")
-    public ModelAndView toAdd(ModelAndView modelAndView) {
+    public ModelAndView toAdd(ModelAndView modelAndView, String id) {
         modelAndView.setViewName("user_add");
+        if (!StringUtils.isEmpty(id)) {
+            modelAndView.addObject("id", id);
+            MyUser myUser = userService.findById(id);
+            modelAndView.addObject("myUser", myUser);
+        }
         return modelAndView;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(MyUser myUser, RedirectAttributes redirectAttributes) {
-        BaseResult baseResult = userService.add(myUser);
+        BaseResult baseResult = new BaseResult();
+        if (myUser.getId() != null) {
+            baseResult = userService.update(myUser);
+        } else {
+            baseResult = userService.add(myUser);
+        }
         redirectAttributes.addFlashAttribute("baseResult", baseResult);
         redirectAttributes.addFlashAttribute("myUser", myUser);
         if (!baseResult.isSuccess()) {
